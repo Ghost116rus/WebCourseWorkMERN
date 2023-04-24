@@ -1,0 +1,58 @@
+import React, { useContext } from 'react';
+import { Context } from '..';
+import { NavLink } from 'react-router-dom';
+import { SHOP_ROUTE } from '../utils/consts';
+
+import Container from 'react-bootstrap/Container';
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
+import Form from 'react-bootstrap/Form';
+import {Button} from 'react-bootstrap';
+import {observer} from 'mobx-react-lite';
+import eye from '../assets/eye.png'
+
+const NavBar = observer(() => {
+    const {user} = useContext(Context);
+    return (
+        <Navbar bg="dark" variant="dark" expand="lg">
+            <Container>
+                <Container>
+                    <Navbar.Brand href={SHOP_ROUTE}>
+                        <img
+                        alt=""
+                        src={eye}
+                        width="30"
+                        height="30"
+                        className="d-inline-block align-top"
+                        />{' '}
+                        Просвещеникус
+                    </Navbar.Brand>
+                    <NavLink style={{color:'white',textDecoration: 'none'}} to={SHOP_ROUTE}>Книги</NavLink>
+                </Container>
+                <Container className="d-flex justify-content-between">
+                    <Form className="d-flex w-50">
+                        <Form.Control
+                            type="search"
+                            placeholder="Поиск книги"
+                            aria-label="Search"
+                            />
+                            <Button variant="outline-success">Поиск</Button>
+                    </Form>
+                    {user.isAuth ?
+                        <Nav className="ml-auto" style={{color: 'white'}}>
+                            <Button variant= {"outline-light"} >Админ панель</Button>
+                            <Button variant= {"outline-light"} className="mr-10" onClick={() => user.setIsAuth(false)}>Выйти</Button>
+                        </Nav>
+                        :
+                        <Nav className="ml-auto" style={{color: 'white'}}>
+                            <Button onClick={() => user.setIsAuth(true)}>Войти</Button>
+                        </Nav>
+                    }
+                </Container>
+            </Container>
+      </Navbar>
+
+    );
+});
+
+export default NavBar
