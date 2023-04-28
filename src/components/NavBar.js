@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Context } from '..';
-import {NavLink, useNavigate} from 'react-router-dom';
-import {LOGIN_ROUTE, SHOP_ROUTE} from '../utils/consts';
+import {NavLink, useLocation, useNavigate, useParams} from 'react-router-dom';
+import {BOOK_ROUTE, LOGIN_ROUTE, SEARCHOME_ROUTE, SHOP_ROUTE} from '../utils/consts';
 
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
@@ -14,6 +14,9 @@ import eye from '../assets/eye.png'
 const NavBar = observer(() => {
     const {user} = useContext(Context);
     const navigate = useNavigate();
+
+    const location = useLocation();
+    const isSearch = (location.pathname === SHOP_ROUTE  || location.pathname.includes(BOOK_ROUTE))
 
     const logOut = () => {
         user.setUser({});
@@ -30,7 +33,7 @@ const NavBar = observer(() => {
         <Navbar bg="dark" variant="dark" expand="lg" >
             <Container>
                 <Container>
-                    <Navbar.Brand href={SHOP_ROUTE}>
+                    <Navbar.Brand href={SEARCHOME_ROUTE}>
                         <img
                         alt=""
                         src={eye}
@@ -43,14 +46,18 @@ const NavBar = observer(() => {
                     <Navbar.Brand style={{color:'white',textDecoration: 'none'}} href={SHOP_ROUTE}>Книги</Navbar.Brand>
                 </Container>
                 <Container className="d-flex justify-content-between">
-                    <Form className="d-flex align-self-center" style={{minWidth: "350px", width:"25vw", height:40, marginRight:20}}>
-                        <Form.Control
-                            type="search"
-                            placeholder="Поиск книги"
-                            aria-label="Search"
+                    {isSearch ?
+                        <Form className="d-flex align-self-center" style={{minWidth: "350px", width:"25vw", height:40, marginRight:20}}>
+                            <Form.Control
+                                type="search"
+                                placeholder="Поиск книги"
+                                aria-label="Search"
                             />
                             <Button variant="outline-success">Поиск</Button>
-                    </Form>
+                        </Form>
+                        :
+                        <div></div>
+                    }
                     {user.isAuth ?
                         <Nav className="ml-auto" style={{color: 'white', marginLeft: 20}}>
                             {localStorage.getItem("userRole") === '1' ?
