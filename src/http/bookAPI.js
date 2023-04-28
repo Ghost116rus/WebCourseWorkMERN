@@ -17,9 +17,6 @@ export const createBook = async (book) => {
 }
 
 export const fetchBooks = async (genre, page, limit= 5) => {
-    console.log(page)
-    console.log(limit)
-    console.log(genre)
     const {data} = await $host.get('books', {params: {genre: genre, page: page, limit: limit}});
     return data;
 }

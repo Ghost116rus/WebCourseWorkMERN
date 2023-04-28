@@ -23,9 +23,11 @@ const NavBar = observer(() => {
         localStorage.removeItem('userRole');
     }
 
+    console.log(localStorage.getItem("userRole") === '1')
+
 
     return (
-        <Navbar bg="dark" variant="dark" expand="lg">
+        <Navbar bg="dark" variant="dark" expand="lg" >
             <Container>
                 <Container>
                     <Navbar.Brand href={SHOP_ROUTE}>
@@ -38,10 +40,10 @@ const NavBar = observer(() => {
                         />{' '}
                         Просвещеникус
                     </Navbar.Brand>
-                    <NavLink style={{color:'white',textDecoration: 'none'}} to={SHOP_ROUTE}>Книги</NavLink>
+                    <Navbar.Brand style={{color:'white',textDecoration: 'none'}} href={SHOP_ROUTE}>Книги</Navbar.Brand>
                 </Container>
                 <Container className="d-flex justify-content-between">
-                    <Form className="d-flex w-50">
+                    <Form className="d-flex align-self-center" style={{minWidth: "350px", width:"25vw", height:40, marginRight:20}}>
                         <Form.Control
                             type="search"
                             placeholder="Поиск книги"
@@ -50,8 +52,18 @@ const NavBar = observer(() => {
                             <Button variant="outline-success">Поиск</Button>
                     </Form>
                     {user.isAuth ?
-                        <Nav className="ml-auto" style={{color: 'white'}}>
-                            <Button variant= {"outline-light"} >Админ панель</Button>
+                        <Nav className="ml-auto" style={{color: 'white', marginLeft: 20}}>
+                            {localStorage.getItem("userRole") === '1' ?
+                                <Button variant= {"outline-light"} style={{minWidth:"10vw"}}>Личный кабинет</Button>
+                                :
+                                <div>
+                                    {localStorage.getItem("userRole") === '0' ?
+                                        <Button variant={"outline-light"} style={{minWidth:"10vw"}}>Админ панель</Button>
+                                        :
+                                        <Button variant={"outline-light"} style={{minWidth:"10vw"}}>Кабинет библиотекаря</Button>
+                                    }
+                                </div>
+                            }
                             <Button variant= {"outline-light"} className="mr-10" onClick={() => logOut()}>Выйти</Button>
                         </Nav>
                         :

@@ -7,7 +7,7 @@ const TypeBar = observer(() => {
   
     const {book} = useContext(Context);
     return (
-        <ListGroup>
+        <ListGroup className="mb-3">
             {book.types.map(type =>
                 <ListGroup.Item
                     style={{cursor: 'pointer'}} 

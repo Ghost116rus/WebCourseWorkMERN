@@ -7,7 +7,7 @@ import { Context } from '..';
 const BookList = observer(() => {
     const {book} = useContext(Context);
     return (
-        <Container className='d-flex flex-wrap'>
+        <Container className='d-flex flex-wrap' style={{minHeight: '700px'}}>
             {book.books.map(book =>
                 <BookItem key={book._id} book={book}/>)
             }
