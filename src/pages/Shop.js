@@ -8,6 +8,7 @@ import {observer} from "mobx-react-lite";
 import {Context} from "../index";
 import {fetchBooks, fetchGenres} from "../http/bookAPI";
 import ListGroup from "react-bootstrap/ListGroup";
+import Pages from "../components/Pages";
 
 const Shop = observer(() => {
 
@@ -16,8 +17,17 @@ const Shop = observer(() => {
   useEffect(() => {
 
       fetchGenres().then(data => book.setTypes(data));
-      fetchBooks().then(data => book.setBooks(data));
+      fetchBooks(null, 1, book.myLimit).then(data => {
+          book.setBooks(data.books)
+          book.setTotalCount(data.count)
+      });
   }, [])
+    useEffect(() => {
+        fetchBooks(book.selectedType.name, book.page, book.myLimit).then(data => {
+            book.setBooks(data.books)
+            book.setTotalCount(data.count)
+        })
+    }, [book.page, book.selectedType])
 
 
   return (
@@ -29,7 +39,9 @@ const Shop = observer(() => {
 
           <Col md={9}>
             <BookList/>
+              <Pages/>
           </Col>
+
         </Row>
       </Container>
   )

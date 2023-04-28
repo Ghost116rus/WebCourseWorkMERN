@@ -20,7 +20,7 @@ const BookPage = observer ( () => {
     const {user} = useContext(Context);
 
     return (
-        <Container className='mt-3 min-vh-100' >
+        <Container className='mt-5 min-vh-100' >
             <h3 className='d-flex justify-content-center'>{book.title}</h3>
             <div className='d-flex justify-content-center'><Image width={300} height={300} src={baseAppURl + book.imageUrl} style={{margin: 20}}/><div style={{width: 150, marginTop: 60}}>
                 <p>Авторы:</p>
@@ -54,7 +54,7 @@ const BookPage = observer ( () => {
                 </div>
             }
             </div>
-            <div className='d-flex justify-content-center flex-column'><h3 style={{marginLeft: 15}}>Аннотация</h3><p>{book.description}</p>
+            <div className='mt-5 d-flex justify-content-center flex-column'><h3 style={{marginLeft: 15}}>Аннотация</h3><p>{book.description}</p>
             </div>
         </Container>
     )
