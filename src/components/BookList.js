@@ -9,7 +9,7 @@ const BookList = observer(() => {
     return (
         <Container className='d-flex flex-wrap'>
             {book.books.map(book =>
-                <BookItem key={book.id} book={book}/>)
+                <BookItem key={book._id} book={book}/>)
             }
         </Container>
     )

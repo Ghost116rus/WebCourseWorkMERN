@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Context } from '..';
-import { NavLink } from 'react-router-dom';
-import { SHOP_ROUTE } from '../utils/consts';
+import {NavLink, useNavigate} from 'react-router-dom';
+import {LOGIN_ROUTE, SHOP_ROUTE} from '../utils/consts';
 
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
@@ -13,6 +13,17 @@ import eye from '../assets/eye.png'
 
 const NavBar = observer(() => {
     const {user} = useContext(Context);
+    const navigate = useNavigate();
+
+    const logOut = () => {
+        user.setUser({});
+        user.setIsAuth(false);
+
+        localStorage.removeItem('token');
+        localStorage.removeItem('userRole');
+    }
+
+
     return (
         <Navbar bg="dark" variant="dark" expand="lg">
             <Container>
@@ -41,11 +52,11 @@ const NavBar = observer(() => {
                     {user.isAuth ?
                         <Nav className="ml-auto" style={{color: 'white'}}>
                             <Button variant= {"outline-light"} >Админ панель</Button>
-                            <Button variant= {"outline-light"} className="mr-10" onClick={() => user.setIsAuth(false)}>Выйти</Button>
+                            <Button variant= {"outline-light"} className="mr-10" onClick={() => logOut()}>Выйти</Button>
                         </Nav>
                         :
                         <Nav className="ml-auto" style={{color: 'white'}}>
-                            <Button onClick={() => user.setIsAuth(true)}>Войти</Button>
+                            <Button onClick={() => navigate(LOGIN_ROUTE)}>Войти</Button>
                         </Nav>
                     }
                 </Container>

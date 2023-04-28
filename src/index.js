@@ -6,8 +6,14 @@ import BookStore from './store/BookStore';
 
 export const Context = createContext(null);
 
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+
+
+if (localStorage.getItem("userRole") === null) {
+    localStorage.setItem('userRole', 1);
+}
+
 root.render(
   <Context.Provider value={{
     user: new UserStore(),
