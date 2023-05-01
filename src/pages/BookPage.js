@@ -6,6 +6,7 @@ import { LOGIN_ROUTE } from '../utils/consts';
 import {useParams} from "react-router-dom";
 import {fetchOneBooks} from "../http/bookAPI";
 import {baseAppURl} from "../http/ingex";
+import {takeBook} from "../http/orderAPI";
 
 
 const BookPage = observer ( () => {
@@ -43,7 +44,7 @@ const BookPage = observer ( () => {
             <div className='d-flex justify-content-center'>{user.isAuth ?
                 <div className='d-flex'>
                     <Button style={{marginRight: 10}}>Ссылка на скачивание электронной версии</Button>
-                    <Button style={{marginRight: 10}}>Взять физическую версию</Button>
+                    <Button style={{marginRight: 10}} onClick={() => takeBook(id)}>Взять физическую версию</Button>
                     <p className="mt-2" > Доступное количество: {book.count}</p>
                 </div>
                 :

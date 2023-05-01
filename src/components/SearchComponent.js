@@ -20,7 +20,7 @@ const SearchComponent = observer(() => {
 
     const search = () => {
 
-        if (searchString.split(" ")[0].length !== 0)
+        if (searchStr.split(" ")[0].length !== 0)
         {
             navigate(SEARCH_ROUTE + "/" + searchType + "/" + searchStr)
         } else {

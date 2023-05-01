@@ -8,12 +8,15 @@ const Footer = () => {
       <div className="container p-4 pb-0">
 
       <section className="">
-        <p className="d-flex justify-content-center align-items-center">
-          <span className="me-3">Register for free</span>
-          <button type="button" className="btn btn-outline-light btn-rounded">
-            Sign up!
-          </button>
-        </p>
+        <div className="d-flex justify-content-center align-items-center">
+          <span className="me-3">Свяжитесь с нами по телефону - +7 952 220-77-77</span>
+        </div>
+      </section>
+
+      <section className="" style={{marginTop: "15px"}}>
+        <div className="d-flex justify-content-center align-items-center">
+          <span className="me-3">Или по почте - elibraryKDA@mail.ru</span>
+        </div>
       </section>
 
     </div>
