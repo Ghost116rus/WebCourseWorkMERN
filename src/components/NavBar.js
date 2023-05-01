@@ -25,6 +25,10 @@ const NavBar = observer(() => {
         user.setUser({});
         user.setIsAuth(false);
 
+        if (location.pathname === USER_ROUTE) {
+            navigate(SEARCHOME_ROUTE);
+        }
+
         localStorage.removeItem('token');
         localStorage.removeItem('userRole');
     }

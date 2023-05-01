@@ -1,6 +1,6 @@
 
 import { Container, Card, Form, Button} from 'react-bootstrap';
-import {LOGIN_ROUTE, REGISTRATION_ROUTE, SHOP_ROUTE} from '../utils/consts';
+import {LOGIN_ROUTE, REGISTRATION_ROUTE, SEARCHOME_ROUTE, SHOP_ROUTE} from '../utils/consts';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import {login, registration} from "../http/userAPI";
 import {useContext, useState} from "react";
@@ -18,9 +18,6 @@ const Auth = observer(() => {
     const [name, setName] = useState('')
     const [phone, setPhone] = useState('')
     const navigate = useNavigate();
-
-
-
 
     const click = async () => {
         try {
@@ -40,7 +37,7 @@ const Auth = observer(() => {
             console.log(data)
             user.setIsAuth(true);
 
-            navigate(SHOP_ROUTE);
+            navigate(SEARCHOME_ROUTE);
 
         } catch (e) {
             alert(e.response.data.msg)
