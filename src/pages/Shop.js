@@ -22,12 +22,12 @@ const Shop = observer(() => {
           book.setTotalCount(data.count)
       });
   }, [])
-    useEffect(() => {
-        fetchBooks(book.selectedType.name, book.page, book.myLimit).then(data => {
-            book.setBooks(data.books)
-            book.setTotalCount(data.count)
-        })
-    }, [book.page, book.selectedType])
+  useEffect(() => {
+      fetchBooks(book.selectedType.name, book.page, book.myLimit).then(data => {
+          book.setBooks(data.books)
+          book.setTotalCount(data.count)
+      })
+  }, [book.page, book.selectedType])
 
 
   return (

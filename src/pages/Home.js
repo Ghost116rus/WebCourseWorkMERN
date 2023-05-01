@@ -16,8 +16,10 @@ const Home = observer(() => {
 
 
     return (
-        <Container className='min-vh-100'>
-            Hello WORLD
+        <Container >
+
+
+
         </Container>
     )
 });
