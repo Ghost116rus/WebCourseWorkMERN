@@ -15,6 +15,8 @@ const Auth = observer(() => {
     const isLogin = location.pathname === LOGIN_ROUTE
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [name, setName] = useState('')
+    const [phone, setPhone] = useState('')
     const navigate = useNavigate();
 
 
@@ -27,8 +29,10 @@ const Auth = observer(() => {
             {
                 data = await login(email, password);
             } else {
-                data = await registration();
+                data = await registration(email, password, name, phone );
             }
+
+            console.log(data.userRole);
 
             localStorage.setItem('token', data.token);
             localStorage.setItem('userRole', data.userRole);
@@ -73,10 +77,12 @@ const Auth = observer(() => {
                             <Form.Control
                                 className='mt-3'
                                 placeholder='Введите ваше имя...'
+                                onChange={e => setName(e.target.value)}
                             />
                             <Form.Control
                                 className='mt-3'
                                 placeholder='Введите ваш номер телефона...'
+                                onChange={e => setPhone(e.target.value)}
                             />
                             <Form.Control
                                 className='mt-3'

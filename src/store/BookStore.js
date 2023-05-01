@@ -8,6 +8,7 @@ export default class BookStore {
         this._page = 1
         this._totalCount = 0
         this._limit = 4
+        this._searchString = ""
 
         makeAutoObservable(this)       
     }
@@ -21,6 +22,9 @@ export default class BookStore {
     }
     setSelectedType(type){
         this._selectedType = type
+    }
+    setSearchString(value){
+        this._searchString = value
     }
 
 
@@ -51,5 +55,8 @@ export default class BookStore {
     }
     get myLimit() {
         return this._limit
+    }
+    get searchString() {
+        return this._searchString
     }
 }

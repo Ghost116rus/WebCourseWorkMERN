@@ -20,23 +20,25 @@ const BookPage = observer ( () => {
     const {user} = useContext(Context);
 
     return (
-        <Container className='mt-5' style={{minHeight: "728px"}}>
+        <Container style={{minHeight: "774px", backgroundColor: 'white', marginTop: "40px", paddingLeft: "20px", paddingTop: "20px", paddingBottom: "20px", marginBottom: "20px", borderRadius: "30px"}}>
             <h3 className='d-flex justify-content-center text-center'>{book.title}</h3>
-            <div className='d-flex justify-content-center'><Image width={300} height={300} src={baseAppURl + book.imageUrl} style={{margin: 20}}/><div style={{width: 150, marginTop: 60}}>
-                <p>Авторы:</p>
-                <p>ISBN:</p>
-                <p>Издатель:</p>
-                <p>Год издания:</p>
-                <p>Жанры:</p>
-                <p>Объем:</p>
-            </div><div style={{width: 350, marginTop: 60}}>
-                <p>{book.authors}</p>
-                <p>{book.isbn}</p>
-                <p>{book.publisher}</p>
-                <p>{book.year}</p>
-                <p>{book.genres}</p>
-                <p>{book.volume}</p>
-            </div>
+            <div className='d-flex justify-content-center'><Image height={350} src={baseAppURl + book.imageUrl} style={{margin: 20}}/>
+                <div style={{width: 150, marginTop: 60, marginLeft: "20px"}}>
+                    <p>Авторы:</p>
+                    <p>ISBN:</p>
+                    <p>Издатель:</p>
+                    <p>Год издания:</p>
+                    <p>Жанры:</p>
+                    <p>Объем:</p>
+                </div>
+                <div style={{width: 350, marginTop: 60}}>
+                    <p>{book.authors}</p>
+                    <p>{book.isbn}</p>
+                    <p>{book.publisher}</p>
+                    <p>{book.year}</p>
+                    <p>{book.genres}</p>
+                    <p>{book.volume}</p>
+                </div>
             </div>
             <div className='d-flex justify-content-center'>{user.isAuth ?
                 <div className='d-flex'>

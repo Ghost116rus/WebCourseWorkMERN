@@ -1,8 +1,8 @@
 import {$host} from "./ingex";
 
 
-export const registration = async (email, password) => {
-    const response = await $host.post('auth/register', {email, password, role: 'ADMIN'});
+export const registration = async (email, password, fullName, mobilePhone) => {
+    const response = await $host.post('auth/register', {email, fullName, mobilePhone, password, role: 1});
     return response.data;
 
 

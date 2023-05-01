@@ -2,7 +2,7 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <div className="align-items-end">
+    <div className="align-items-end" >
       <footer className="text-center text-white" style={{background: '#060817'}}>
 
       <div className="container p-4 pb-0">

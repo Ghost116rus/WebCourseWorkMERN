@@ -17,8 +17,23 @@ export const createBook = async (book) => {
 }
 
 export const fetchBooks = async (genre, page, limit= 5) => {
-    const {data} = await $host.get('books', {params: {genre: genre, page: page, limit: limit}});
-    return data;
+    try {
+        const {data} = await $host.get('books', {params: {genre: genre, page: page, limit: limit}});
+        return data;
+    } catch (e) {
+        console.log("OOps");
+        return {books: [], count: 1}
+    }
+}
+
+export const searchBooks = async (name, type, page, limit) => {
+    try {
+        const {data} = await $host.get("books/SearchBooks", {params: {name, type, page, limit}})
+        return data;
+    } catch (e) {
+        console.log("OOps");
+        return {books: [], count: 1}
+    }
 }
 
 export const fetchOneBooks = async (id) => {

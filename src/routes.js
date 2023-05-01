@@ -3,6 +3,8 @@ import Auth from "./pages/Auth"
 import BookPage from "./pages/BookPage"
 import Shop from "./pages/Shop"
 import Home from "./pages/Home"
+import SearchPage from "./pages/SearchPage";
+import UserCabinet from "./pages/UserCabinet";
 
 import {
     ADMIN_ROUTE,
@@ -10,8 +12,12 @@ import {
     LOGIN_ROUTE,
     REGISTRATION_ROUTE,
     SEARCHOME_ROUTE,
-    SHOP_ROUTE
+    SHOP_ROUTE,
+    SEARCH_ROUTE,
+    USER_ROUTE
 } from "./utils/consts"
+
+
 
 export const authRoutes = [
     {
@@ -40,5 +46,13 @@ export const publicRoutes = [
     {
         path: BOOK_ROUTE + '/:id',
         Component: BookPage
+    },
+    {
+        path: SEARCH_ROUTE + '/:SearchType' + '/:searchString',
+        Component: SearchPage
+    },
+    {
+        path: USER_ROUTE,
+        Component: UserCabinet
     }
 ]

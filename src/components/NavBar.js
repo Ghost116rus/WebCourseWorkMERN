@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Context } from '..';
-import {NavLink, useLocation, useNavigate, useParams} from 'react-router-dom';
-import {BOOK_ROUTE, LOGIN_ROUTE, SEARCHOME_ROUTE, SHOP_ROUTE} from '../utils/consts';
+import {useLocation, useNavigate} from 'react-router-dom';
+import {BOOK_ROUTE, LOGIN_ROUTE, SEARCH_ROUTE, SEARCHOME_ROUTE, SHOP_ROUTE, USER_ROUTE} from '../utils/consts';
 
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
@@ -10,6 +10,9 @@ import Form from 'react-bootstrap/Form';
 import {Button} from 'react-bootstrap';
 import {observer} from 'mobx-react-lite';
 import eye from '../assets/eye.png'
+import Dropdown from "react-bootstrap/Dropdown";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
+import {useState} from "react";
 
 const NavBar = observer(() => {
     const {user} = useContext(Context);
@@ -26,7 +29,19 @@ const NavBar = observer(() => {
         localStorage.removeItem('userRole');
     }
 
-    console.log(localStorage.getItem("userRole") === '1')
+    const [searchString, setSearchString] = useState('')
+    let [searchType, SetSearchType] = useState(0)
+
+
+    const search = () => {
+
+        if (searchString.split(" ")[0].length !== 0)
+        {
+            navigate(SEARCH_ROUTE + "/" + searchType + "/" + searchString)
+        } else {
+            alert("Некорректно введена строка поиска");
+        }
+    }
 
 
     return (
@@ -52,19 +67,30 @@ const NavBar = observer(() => {
                                 type="search"
                                 placeholder="Поиск книги"
                                 aria-label="Search"
+                                onChange={e => setSearchString(e.target.value)}
                             />
-                            <Button variant="outline-success">Поиск</Button>
+                            <Dropdown as={ButtonGroup}>
+                                <Button variant="success" style={{width: "80px"}} onClick={search}>Поиск</Button>
+
+                                <Dropdown.Toggle split variant="success" id="dropdown-split-basic" />
+
+                                <Dropdown.Menu>
+                                    <Dropdown.Item onClick={() => SetSearchType(0)} >По названию</Dropdown.Item>
+                                    <Dropdown.Item onClick={() => SetSearchType(1)} >По автору</Dropdown.Item>
+
+                                </Dropdown.Menu>
+                            </Dropdown>
                         </Form>
                         :
                         <div></div>
                     }
                     {user.isAuth ?
                         <Nav className="ml-auto" style={{color: 'white', marginLeft: 20}}>
-                            {localStorage.getItem("userRole") === '1' ?
-                                <Button variant= {"outline-light"} style={{minWidth:"10vw"}}>Личный кабинет</Button>
+                            {localStorage.getItem("userRole") === "1" ?
+                                <Button variant= {"outline-light"} style={{minWidth:"10vw"}} onClick={() => navigate(USER_ROUTE)}>Личный кабинет</Button>
                                 :
                                 <div>
-                                    {localStorage.getItem("userRole") === '0' ?
+                                    {localStorage.getItem("userRole") === "0" ?
                                         <Button variant={"outline-light"} style={{minWidth:"10vw"}}>Админ панель</Button>
                                         :
                                         <Button variant={"outline-light"} style={{minWidth:"10vw"}}>Кабинет библиотекаря</Button>
