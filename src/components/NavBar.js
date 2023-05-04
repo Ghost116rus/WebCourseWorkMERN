@@ -1,7 +1,15 @@
 import React, { useContext } from 'react';
 import { Context } from '..';
 import {useLocation, useNavigate} from 'react-router-dom';
-import {BOOK_ROUTE, LOGIN_ROUTE, SEARCH_ROUTE, SEARCHOME_ROUTE, SHOP_ROUTE, USER_ROUTE} from '../utils/consts';
+import {
+    ADMIN_ROUTE,
+    BOOK_ROUTE,
+    LOGIN_ROUTE,
+    SEARCH_ROUTE,
+    SEARCHOME_ROUTE,
+    SHOP_ROUTE,
+    USER_ROUTE
+} from '../utils/consts';
 
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
@@ -95,7 +103,7 @@ const NavBar = observer(() => {
                                 :
                                 <div>
                                     {localStorage.getItem("userRole") === "0" ?
-                                        <Button variant={"outline-light"} style={{minWidth:"10vw"}}>Админ панель</Button>
+                                        <Button variant={"outline-light"} style={{minWidth:"10vw"}} onClick={() => navigate(ADMIN_ROUTE)}>Админ панель</Button>
                                         :
                                         <Button variant={"outline-light"} style={{minWidth:"10vw"}}>Кабинет библиотекаря</Button>
                                     }
