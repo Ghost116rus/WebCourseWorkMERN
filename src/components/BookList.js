@@ -13,8 +13,6 @@ const BookList = observer(() => {
                 <div style={{marginLeft: "10vw"}}>
                     <h2>К сожалению, ничего не найдено</h2>
                 </div>
-
-
                 :
                 book.books.map(book =>
                     <BookItem key={book._id} book={book}/>)

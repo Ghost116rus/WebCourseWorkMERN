@@ -30,7 +30,6 @@ const NavBar = observer(() => {
     const isSearch = (location.pathname === SHOP_ROUTE  || location.pathname.includes(BOOK_ROUTE))
 
     const logOut = () => {
-        user.setUser({});
         user.setIsAuth(false);
 
         if (location.pathname === USER_ROUTE) {
