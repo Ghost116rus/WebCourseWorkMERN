@@ -1,4 +1,5 @@
 import Admin from "./pages/Admin"
+import LibrariyanPage from "./pages/LibrariyanPage";
 import Auth from "./pages/Auth"
 import BookPage from "./pages/BookPage"
 import Shop from "./pages/Shop"
@@ -8,6 +9,7 @@ import UserCabinet from "./pages/UserCabinet";
 
 import {
     ADMIN_ROUTE,
+    LIBRARIAN_ROUTE,
     BOOK_ROUTE,
     LOGIN_ROUTE,
     REGISTRATION_ROUTE,
@@ -23,6 +25,10 @@ export const authRoutes = [
     {
         path: ADMIN_ROUTE,
         Component: Admin
+    },
+    {
+        path: LIBRARIAN_ROUTE,
+        Component: LibrariyanPage
     }
 ]
 

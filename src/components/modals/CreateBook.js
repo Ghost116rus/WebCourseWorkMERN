@@ -9,7 +9,7 @@ const CreateBook = ({show, onHide}) => {
 
     useEffect(() => {
         fetchGenres().then(data => book.setTypes(data));
-    })
+    }, [])
 
     const {book} = useContext(Context)
 

@@ -3,7 +3,7 @@ import { Context } from '..';
 import {useLocation, useNavigate} from 'react-router-dom';
 import {
     ADMIN_ROUTE,
-    BOOK_ROUTE,
+    BOOK_ROUTE, LIBRARIAN_ROUTE,
     LOGIN_ROUTE,
     SEARCH_ROUTE,
     SEARCHOME_ROUTE,
@@ -104,7 +104,7 @@ const NavBar = observer(() => {
                                     {localStorage.getItem("userRole") === "0" ?
                                         <Button variant={"outline-light"} style={{minWidth:"10vw"}} onClick={() => navigate(ADMIN_ROUTE)}>Админ панель</Button>
                                         :
-                                        <Button variant={"outline-light"} style={{minWidth:"10vw"}}>Кабинет библиотекаря</Button>
+                                        <Button variant={"outline-light"} style={{minWidth:"10vw"}} onClick={() => navigate(LIBRARIAN_ROUTE)}>Кабинет библиотекаря</Button>
                                     }
                                 </div>
                             }
