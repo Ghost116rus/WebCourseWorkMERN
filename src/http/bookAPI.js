@@ -2,7 +2,7 @@ import {$authHost, $host} from "./ingex";
 
 
 export const createGenre = async (genre) => {
-    const {data} = await $authHost.post('genres/', genre);
+    const {data} = await $authHost.post('genres/createGenre', {name: genre});
     return data;
 }
 
@@ -11,10 +11,7 @@ export const fetchGenres = async () => {
     return data;
 }
 
-export const createBook = async (book) => {
-    const {data} = await $authHost.post('books', book);
-    return data;
-}
+
 
 export const fetchBooks = async (genre, page, limit= 5) => {
     try {
@@ -38,5 +35,19 @@ export const searchBooks = async (name, type, page, limit) => {
 
 export const fetchOneBooks = async (id) => {
     const {data} = await $host.get('books/' + id);
+    return data;
+}
+
+export const createMedia = async (file) => {
+
+    let bodyFormData = new FormData();
+    bodyFormData.append('image', file);
+
+    const {data} = await $authHost.post("media", bodyFormData)
+    return data;
+}
+
+export const createBook = async (title, isbn, publisher, year, volume, description, authors, genres, count, imageUrl, urlForFile) => {
+    const {data} = await $authHost.post('books', {title, isbn, publisher, year, volume, description, authors, genres, count, imageUrl, urlForFile});
     return data;
 }

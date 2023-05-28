@@ -16,7 +16,7 @@ const BookPage = observer ( () => {
 
     useEffect(() => {
         fetchOneBooks(id).then(data => setBook(data));
-    })
+    }, [])
 
     const {user} = useContext(Context);
 
@@ -57,7 +57,8 @@ const BookPage = observer ( () => {
                 </div>
             }
             </div>
-            <div className='mt-5 mb-5 d-flex justify-content-center flex-column'><h3 className="text-center" style={{marginLeft: 15}}>Аннотация</h3><p>{book.description}</p>
+            <div className='mt-5 mb-5 d-flex justify-content-center flex-column'><h3 className="text-center" style={{marginLeft: 15}}>Аннотация</h3>
+                <text style={{overflowWrap: 'break-word'}}>{book.description}</text>
             </div>
         </Container>
     )

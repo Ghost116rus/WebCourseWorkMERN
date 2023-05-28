@@ -18,7 +18,7 @@ const BookItem = ({book}) => {
                     </h3>
 
                     <h5>{book.year} {book.authors}</h5>
-                    <p className='text-justify'>{book.description}</p>
+                    <p className='text-justify' style={{overflowWrap: 'break-word'}}>{book.description}</p>
                 </div>
           </div>
 

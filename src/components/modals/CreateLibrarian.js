@@ -1,6 +1,7 @@
 import React from 'react';
 import {Button, Form, Modal} from "react-bootstrap";
 import {useState} from "react";
+import {registration} from "../../http/userAPI";
 
 const CreateLibrarian = ({show, onHide}) => {
 
@@ -8,6 +9,16 @@ const CreateLibrarian = ({show, onHide}) => {
     const [password, setPassword] = useState('')
     const [name, setName] = useState('')
     const [phone, setPhone] = useState('')
+
+    const addLibrarian = () => {
+        registration(email, password, name, phone, 2).then(data => {
+            setEmail("");
+            setPassword("");
+            setName("");
+            setPhone("");
+            onHide();
+        })
+    }
 
     return (
         <Modal
@@ -48,7 +59,7 @@ const CreateLibrarian = ({show, onHide}) => {
             </Modal.Body>
             <Modal.Footer>
                 <Button variant={"outline-danger"} onClick={onHide}>Закрыть</Button>
-                <Button variant={"outline-success"} onClick={onHide}>Добавить</Button>
+                <Button variant={"outline-success"} onClick={addLibrarian}>Добавить</Button>
             </Modal.Footer>
         </Modal>
     );

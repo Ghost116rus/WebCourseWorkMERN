@@ -26,7 +26,7 @@ const Auth = observer(() => {
             {
                 data = await login(email, password);
             } else {
-                data = await registration(email, password, name, phone );
+                data = await registration(email, password, name, phone, 1);
             }
 
             console.log(data.userRole);
@@ -38,6 +38,7 @@ const Auth = observer(() => {
             user.setIsAuth(true);
 
             navigate(SEARCHOME_ROUTE);
+            window.location.reload();
 
         } catch (e) {
             alert(e.response.data.msg)

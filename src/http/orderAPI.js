@@ -5,7 +5,7 @@ export const takeBook = async (bookId) => {
         await $authHost.post('orders', {bookId});
         alert("Заявка успешно офрмлена")
     } catch (e) {
-        alert(e.message())
+        alert(e.response.data.msg)
     }
 
 }

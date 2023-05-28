@@ -32,7 +32,7 @@ const NavBar = observer(() => {
     const logOut = () => {
         user.setIsAuth(false);
 
-        if (location.pathname === USER_ROUTE) {
+        if (location.pathname !== SEARCHOME_ROUTE) {
             navigate(SEARCHOME_ROUTE);
         }
 
