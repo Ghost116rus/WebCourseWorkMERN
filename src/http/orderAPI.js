@@ -7,5 +7,25 @@ export const takeBook = async (bookId) => {
     } catch (e) {
         alert(e.response.data.msg)
     }
+}
 
+
+export const getActiveOrders = async () => {
+    try {
+        let response = await $authHost.get('/orders/activeOrders');
+        console.log(response.data);
+        return response.data;
+    } catch (e) {
+
+    }
+}
+
+export const getOrdersToReturn = async () => {
+    try {
+        let response = await $authHost.get('/orders/activeRequest');
+        console.log(response.data);
+        return response.data;
+    } catch (e) {
+
+    }
 }
