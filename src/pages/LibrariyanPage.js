@@ -10,8 +10,9 @@ import {getActiveOrders, getOrdersToReturn} from "../http/orderAPI";
 import Form from "react-bootstrap/Form";
 import Dropdown from "react-bootstrap/Dropdown";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
+import {searchUsers} from "../http/librarianAPI";
 
-const BookPage = observer ( () => {
+const LibrarianPage = observer ( () => {
 
 
     const [activeOrders, setActiveOrders] = useState([])
@@ -30,6 +31,12 @@ const BookPage = observer ( () => {
             setOrdersToReturn(data);
         })
     }, [])
+
+    const search = () => {
+        searchUsers(searchStr, searchType).then(data => {
+            setSearchUserArr(data);
+        })
+    }
 
     return (
         <div style={{minHeight: "756px"}}>
@@ -145,7 +152,7 @@ const BookPage = observer ( () => {
                                     onChange={e => setSearchString(e.target.value)}
                                 />
                                 <Dropdown as={ButtonGroup}>
-                                    <Button variant="success" style={{width: "150px"}} >Поиск</Button>
+                                    <Button variant="success" style={{width: "150px"}} onClick={search}>Поиск</Button>
 
                                     <Dropdown.Toggle split variant="success" id="dropdown-split-basic" />
 
@@ -157,6 +164,40 @@ const BookPage = observer ( () => {
                                 </Dropdown>
                             </Form>
                         </Container>
+
+                        {
+                            searchUserArr.length === 0 ?
+                                <div/>
+                                :
+                                <Container className="mt-3">
+                                    <Row>
+                                        <Col sm={3} ><h4>Полное имя</h4></Col>
+                                        <Col sm={2}><h4>Почта</h4></Col>
+                                        <Col sm={3}><h4>Мобильный телефон</h4></Col>
+                                        <Col sm={3} ><h5>Очки Лояльности</h5></Col>
+                                    </Row>
+                                    {
+                                        searchUserArr.map(user =>
+                                            <Row   key={user._id} style={{borderRadius: 15}}>
+                                                <Col sm={3} className='d-flex flex-row'>
+                                                    <p>{user.fullName}</p>
+                                                </Col>
+                                                <Col sm={2} >
+                                                    <p>{user.email}</p>
+                                                </Col>
+                                                <Col sm={3} >
+                                                    <p>{user.mobilePhone}</p>
+                                                </Col>
+                                                <Col sm={3} >
+                                                    <p>{user.loyaltyPoints}</p>
+                                                </Col>
+                                            </Row>)
+                                    }
+
+                                    )
+                                </Container>
+
+                        }
                     </Tab>
                 </Tabs>
             </Container>
@@ -165,4 +206,4 @@ const BookPage = observer ( () => {
     )
 });
 
-export default BookPage
+export default LibrarianPage
