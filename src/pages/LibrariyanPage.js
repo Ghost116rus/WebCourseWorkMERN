@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import { observer } from 'mobx-react-lite';
 import userImage from  "../assets/userImg.png"
 import {Container, Tab, Nav, Row, Col, Image, Button, Tabs} from 'react-bootstrap';
+import Table from 'react-bootstrap/Table';
 import {getUserInfo, notRecieveBook, requestToReturnBook} from "../http/userAPI";
 import {baseAppURl} from "../http/ingex";
 import {BOOK_ROUTE} from "../utils/consts";
@@ -33,9 +34,15 @@ const LibrarianPage = observer ( () => {
     }, [])
 
     const search = () => {
-        searchUsers(searchStr, searchType).then(data => {
-            setSearchUserArr(data);
-        })
+        if (searchStr === "")
+        {
+            setSearchUserArr([]);
+        } else {
+            searchUsers(searchStr, searchType).then(data => {
+                setSearchUserArr(data);
+            })
+        }
+
     }
 
     return (
@@ -170,31 +177,31 @@ const LibrarianPage = observer ( () => {
                                 <div/>
                                 :
                                 <Container className="mt-3">
-                                    <Row>
-                                        <Col sm={3} ><h4>Полное имя</h4></Col>
-                                        <Col sm={2}><h4>Почта</h4></Col>
-                                        <Col sm={3}><h4>Мобильный телефон</h4></Col>
-                                        <Col sm={3} ><h5>Очки Лояльности</h5></Col>
-                                    </Row>
-                                    {
-                                        searchUserArr.map(user =>
-                                            <Row   key={user._id} style={{borderRadius: 15}}>
-                                                <Col sm={3} className='d-flex flex-row'>
-                                                    <p>{user.fullName}</p>
-                                                </Col>
-                                                <Col sm={2} >
-                                                    <p>{user.email}</p>
-                                                </Col>
-                                                <Col sm={3} >
-                                                    <p>{user.mobilePhone}</p>
-                                                </Col>
-                                                <Col sm={3} >
-                                                    <p>{user.loyaltyPoints}</p>
-                                                </Col>
-                                            </Row>)
-                                    }
+                                    <Table striped>
+                                        <thead>
+                                        <tr>
+                                            <th>ФИО</th>
+                                            <th>Почта</th>
+                                            <th>Мобильный телефон</th>
+                                            <th>Очки лояльности</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {
+                                            searchUserArr.map(user =>
+                                                <tr key={user._id} onClick={() => navigate(BOOK_ROUTE + "/" + user._id)} style={{cursor: 'pointer', marginTop: 15}}  >
+                                                    <td>{user.fullName}</td>
+                                                    <td>{user.email}</td>
+                                                    <td>{user.mobilePhone}</td>
+                                                    <td>{user.loyaltyPoints}</td>
+                                                </tr>
+                                            )
 
-                                    )
+                                        }
+                                        </tbody>
+                                    </Table>
+
+
                                 </Container>
 
                         }
