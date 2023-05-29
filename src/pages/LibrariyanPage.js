@@ -11,7 +11,7 @@ import {getActiveOrders, getOrdersToReturn} from "../http/orderAPI";
 import Form from "react-bootstrap/Form";
 import Dropdown from "react-bootstrap/Dropdown";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
-import {searchUsers} from "../http/librarianAPI";
+import {giveBook, noGiveBook, noRecieveBook, recieveBook, searchUsers} from "../http/librarianAPI";
 
 const LibrarianPage = observer ( () => {
 
@@ -89,12 +89,12 @@ const LibrarianPage = observer ( () => {
                                                     <h5 className='d-flex justify-content-center'>{orderInfo.createdAt.substring(0,10)}</h5>
                                                 </Col>
                                                 <Col sm={2} >
-                                                    <Button variant="success" onClick={() => requestToReturnBook(orderInfo._id)} style={{marginLeft:15}}>
+                                                    <Button variant="success" onClick={() => giveBook(orderInfo._id)} style={{marginLeft:15}}>
                                                         Выдать книгу
                                                     </Button>
                                                 </Col>
                                                 <Col sm={2} >
-                                                    <Button variant="dark" onClick={() => requestToReturnBook(orderInfo._id)} style={{marginLeft:15}}>
+                                                    <Button variant="dark" onClick={() => noGiveBook(orderInfo._id)} style={{marginLeft:15}}>
                                                         Отказать в выдаче
                                                     </Button>
                                                 </Col>
@@ -139,12 +139,12 @@ const LibrarianPage = observer ( () => {
                                                     <h5 className='d-flex justify-content-center'>{orderInfo.returnDate.substring(0,10)}</h5>
                                                 </Col>
                                                 <Col sm={2} >
-                                                    <Button variant="success" onClick={() => requestToReturnBook(orderInfo._id)} style={{marginLeft:15}}>
+                                                    <Button variant="success" onClick={() => recieveBook(orderInfo._id)} style={{marginLeft:15}}>
                                                         Принять книгу
                                                     </Button>
                                                 </Col>
                                                 <Col sm={2} >
-                                                    <Button variant="dark" onClick={() => requestToReturnBook(orderInfo._id)} style={{marginLeft:15}}>
+                                                    <Button variant="dark" onClick={() => noRecieveBook(orderInfo._id)} style={{marginLeft:15}}>
                                                         Отказать в приемке
                                                     </Button>
                                                 </Col>

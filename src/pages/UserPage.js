@@ -84,20 +84,24 @@ const UserPage = observer ( () => {
                                                                 <h5 className='d-flex justify-content-center'>{historyInfo.returnDate.substring(0,10)}</h5>
                                                             </Col>
                                                             {
-                                                                historyInfo.isGiven ?
-
-                                                                    historyInfo.isReturned ?
-                                                                        <Col sm={3} >
-                                                                            <h5>Возвращена</h5>
-                                                                        </Col>
+                                                                historyInfo.isCancled ?
+                                                                    <Col sm={3} >
+                                                                        <h6 className='d-flex justify-content-center'>Отказано в выдаче</h6>
+                                                                    </Col>
+                                                                    :
+                                                                    historyInfo.isGiven ?
+                                                                        historyInfo.isReturned ?
+                                                                            <Col sm={3} >
+                                                                                <h6 className='d-flex justify-content-center'>Возвращена</h6>
+                                                                            </Col>
+                                                                            :
+                                                                            <Col sm={3} >
+                                                                                <h6 className='d-flex justify-content-center'>Не возвращена</h6>
+                                                                            </Col>
                                                                         :
                                                                         <Col sm={3} >
-                                                                            <h5>Не возвращена</h5>
+                                                                            <h6 className='d-flex justify-content-center'>Не получена</h6>
                                                                         </Col>
-                                                                    :
-                                                                    <Col sm={3} >
-                                                                        <h5>Не получена</h5>
-                                                                    </Col>
                                                             }
                                                         </Row>
                                                     )

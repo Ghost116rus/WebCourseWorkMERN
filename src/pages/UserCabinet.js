@@ -169,38 +169,46 @@ const BookPage = observer ( () => {
                                                                 <h5 className='d-flex justify-content-center'>{historyInfo.returnDate.substring(0,10)}</h5>
                                                             </Col>
                                                             {
-                                                                historyInfo.isGiven ?
-
-                                                                    historyInfo.isReturned ?
-                                                                        <Col sm={2} >
-                                                                            <h6 className='d-flex justify-content-center'>Возвращена</h6>
-                                                                        </Col>
+                                                                historyInfo.isCancled ?
+                                                                    <Col sm={2} >
+                                                                        <h6 className='d-flex justify-content-center'>Отказано в выдаче</h6>
+                                                                    </Col>
+                                                                    :
+                                                                    historyInfo.isGiven ?
+                                                                        historyInfo.isReturned ?
+                                                                            <Col sm={2} >
+                                                                                <h6 className='d-flex justify-content-center'>Возвращена</h6>
+                                                                            </Col>
+                                                                            :
+                                                                            <Col sm={2} >
+                                                                                <h6 className='d-flex justify-content-center'>Не возвращена</h6>
+                                                                            </Col>
                                                                         :
                                                                         <Col sm={2} >
-                                                                            <h6 className='d-flex justify-content-center'>Не возвращена</h6>
+                                                                            <h6 className='d-flex justify-content-center'>Не получена</h6>
                                                                         </Col>
-                                                                :
-                                                                    <Col sm={2} >
-                                                                        <h6 className='d-flex justify-content-center'>Не получена</h6>
-                                                                    </Col>
                                                             }
                                                             {
-                                                                historyInfo.isGiven ?
-                                                                    historyInfo.isReturned ?
-                                                                        <Col sm={2} >
-                                                                        </Col>
+                                                                historyInfo.isCancled ?
+                                                                    <Col sm={2} >
+                                                                    </Col>
+                                                                    :
+                                                                    historyInfo.isGiven ?
+                                                                        historyInfo.isReturned ?
+                                                                            <Col sm={2} >
+                                                                            </Col>
+                                                                            :
+                                                                            <Col sm={2} >
+                                                                                <Button onClick={() => requestToReturnBook(historyInfo._id)}>
+                                                                                    Вернуть книгу
+                                                                                </Button>
+                                                                            </Col>
                                                                         :
                                                                         <Col sm={2} >
-                                                                            <Button onClick={() => requestToReturnBook(historyInfo._id)}>
-                                                                                Вернуть книгу
+                                                                            <Button onClick={() => notRecieveBook(historyInfo._id)}>
+                                                                                Не забирать книгу
                                                                             </Button>
                                                                         </Col>
-                                                                    :
-                                                                    <Col sm={2} >
-                                                                        <Button onClick={() => notRecieveBook(historyInfo._id)}>
-                                                                            Не забирать книгу
-                                                                        </Button>
-                                                                    </Col>
                                                             }
                                                         </Row>
                                                     )
