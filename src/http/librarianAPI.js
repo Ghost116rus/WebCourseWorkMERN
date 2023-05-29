@@ -12,3 +12,8 @@ export const searchUsers = async (name, type) => {
     }
 }
 
+export const getUser = async (id) => {
+    const response = await $authHost.get('/user/getUser', {params: {id: id}});
+    return response.data;
+}
+

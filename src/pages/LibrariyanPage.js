@@ -5,7 +5,7 @@ import {Container, Tab, Nav, Row, Col, Image, Button, Tabs} from 'react-bootstra
 import Table from 'react-bootstrap/Table';
 import {getUserInfo, notRecieveBook, requestToReturnBook} from "../http/userAPI";
 import {baseAppURl} from "../http/ingex";
-import {BOOK_ROUTE} from "../utils/consts";
+import {BOOK_ROUTE, USERPAGE_ROUTE} from "../utils/consts";
 import {useNavigate} from "react-router-dom";
 import {getActiveOrders, getOrdersToReturn} from "../http/orderAPI";
 import Form from "react-bootstrap/Form";
@@ -80,7 +80,10 @@ const LibrarianPage = observer ( () => {
                                                     </div>
                                                 </Col>
                                                 <Col sm={2} >
-                                                    <h6 className='d-flex justify-content-center'>{orderInfo.reader.fullName + " " + orderInfo.reader.email}</h6>
+                                                    <h6 className='d-flex justify-content-center'
+                                                        onClick={() => navigate(USERPAGE_ROUTE + "/" + orderInfo.reader._id)}
+                                                        style={{cursor: 'pointer'}}>
+                                                        {orderInfo.reader.fullName + " " + orderInfo.reader.email}</h6>
                                                 </Col>
                                                 <Col sm={2} >
                                                     <h5 className='d-flex justify-content-center'>{orderInfo.createdAt.substring(0,10)}</h5>
@@ -127,7 +130,10 @@ const LibrarianPage = observer ( () => {
                                                     </div>
                                                 </Col>
                                                 <Col sm={2} >
-                                                    <h6 className='d-flex justify-content-center'>{orderInfo.reader.fullName + " " + orderInfo.reader.email}</h6>
+                                                    <h6 className='d-flex justify-content-center' onClick={() => navigate(USERPAGE_ROUTE + "/" + orderInfo.reader._id)}
+                                                        style={{cursor: 'pointer'}}>
+                                                        {orderInfo.reader.fullName + " " + orderInfo.reader.email}
+                                                    </h6>
                                                 </Col>
                                                 <Col sm={2} >
                                                     <h5 className='d-flex justify-content-center'>{orderInfo.returnDate.substring(0,10)}</h5>
@@ -189,7 +195,7 @@ const LibrarianPage = observer ( () => {
                                         <tbody>
                                         {
                                             searchUserArr.map(user =>
-                                                <tr key={user._id} onClick={() => navigate(BOOK_ROUTE + "/" + user._id)} style={{cursor: 'pointer', marginTop: 15}}  >
+                                                <tr key={user._id} onClick={() => navigate(USERPAGE_ROUTE + "/" + user._id)} style={{cursor: 'pointer', marginTop: 15}}>
                                                     <td>{user.fullName}</td>
                                                     <td>{user.email}</td>
                                                     <td>{user.mobilePhone}</td>

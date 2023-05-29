@@ -7,3 +7,4 @@ export const SEARCHOME_ROUTE = '/searchHome';
 export const BOOK_ROUTE = '/book';
 export const SEARCH_ROUTE = '/search';
 export const USER_ROUTE = '/userCabinet';
+export const USERPAGE_ROUTE = '/userPage';

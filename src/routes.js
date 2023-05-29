@@ -6,6 +6,7 @@ import Shop from "./pages/Shop"
 import Home from "./pages/Home"
 import SearchPage from "./pages/SearchPage";
 import UserCabinet from "./pages/UserCabinet";
+import UserPage from "./pages/UserPage";
 
 import {
     ADMIN_ROUTE,
@@ -16,8 +17,10 @@ import {
     SEARCHOME_ROUTE,
     SHOP_ROUTE,
     SEARCH_ROUTE,
-    USER_ROUTE
+    USER_ROUTE,
+    USERPAGE_ROUTE
 } from "./utils/consts"
+
 
 
 
@@ -29,7 +32,11 @@ export const authRoutes = [
     {
         path: LIBRARIAN_ROUTE,
         Component: LibrariyanPage
-    }
+    },
+    {
+        path: USERPAGE_ROUTE + '/:id',
+        Component: UserPage
+    },
 ]
 
 export const publicRoutes = [
