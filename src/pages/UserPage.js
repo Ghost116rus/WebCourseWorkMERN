@@ -1,12 +1,11 @@
 import React, {useEffect, useState} from 'react'
 import { observer } from 'mobx-react-lite';
 import userImage from  "../assets/userImg.png"
-import {Container, Tab, Nav, Row, Col, Image, Button} from 'react-bootstrap';
+import {Container, Tab, Nav, Row, Col, Image} from 'react-bootstrap';
 
 import {baseAppURl} from "../http/ingex";
 import {BOOK_ROUTE} from "../utils/consts";
 import {useNavigate, useParams} from "react-router-dom";
-import {fetchOneBooks} from "../http/bookAPI";
 import {getUser} from "../http/librarianAPI";
 
 const UserPage = observer ( () => {
@@ -22,9 +21,7 @@ const UserPage = observer ( () => {
             setUserData(data.userData);
             setUserHistory(data.history);
         });
-        console.log(userData);
-
-    }, [])
+    }, [id])
 
     return (
         <div style={{minHeight: "756px"}}>
