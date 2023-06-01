@@ -35,7 +35,7 @@ const Admin = () => {
                 className="mt-2 p-2"
                 onClick={() => setLibraVisible(true)}
             >
-                Добавить менеджера
+                Добавить библиотекаря
             </Button>
             <Button
                 variant={"outline-info"}

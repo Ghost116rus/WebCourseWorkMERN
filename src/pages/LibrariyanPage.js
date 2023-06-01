@@ -1,9 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import { observer } from 'mobx-react-lite';
-import userImage from  "../assets/userImg.png"
-import {Container, Tab, Nav, Row, Col, Image, Button, Tabs} from 'react-bootstrap';
+import {Container, Tab, Row, Col, Image, Button, Tabs} from 'react-bootstrap';
 import Table from 'react-bootstrap/Table';
-import {getUserInfo, notRecieveBook, requestToReturnBook} from "../http/userAPI";
 import {baseAppURl} from "../http/ingex";
 import {BOOK_ROUTE, USERPAGE_ROUTE} from "../utils/consts";
 import {useNavigate} from "react-router-dom";
@@ -113,7 +111,7 @@ const LibrarianPage = observer ( () => {
                                     <Row>
                                         <Col sm={4} ><h4>Основная информация</h4></Col>
                                         <Col sm={2}><h4>Читатель</h4></Col>
-                                        <Col sm={2}><h4>Дата создания</h4></Col>
+                                        <Col sm={2}><h4>Срок возврата</h4></Col>
                                         <Col sm={4} className="d-flex justify-content-center"><h4>Действие</h4></Col>
                                     </Row>
                                     {

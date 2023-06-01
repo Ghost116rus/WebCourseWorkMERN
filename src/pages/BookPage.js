@@ -2,12 +2,11 @@ import React, {useContext, useEffect, useState} from 'react'
 import {Container, Image, NavLink, Button} from 'react-bootstrap'
 import { Context } from '..';
 import { observer } from 'mobx-react-lite';
-import {ADMIN_ROUTE, LOGIN_ROUTE, USER_ROUTE} from '../utils/consts';
+import {LOGIN_ROUTE} from '../utils/consts';
 import {useParams} from "react-router-dom";
-import {fetchOneBooks} from "../http/bookAPI";
+import {fetchOneBooks, getBookElVariant} from "../http/bookAPI";
 import {baseAppURl} from "../http/ingex";
 import {takeBook} from "../http/orderAPI";
-import Nav from "react-bootstrap/Nav";
 
 
 const BookPage = observer ( () => {
@@ -15,21 +14,15 @@ const BookPage = observer ( () => {
     const [book, setBook] = useState({})
     const {id} = useParams();
 
+
     useEffect(() => {
         fetchOneBooks(id).then(data => setBook(data));
-    }, [])
+    }, [id])
 
     const {user} = useContext(Context);
 
     return (
         <Container style={{minHeight: "774px", backgroundColor: 'white', marginTop: "40px", paddingLeft: "20px", paddingTop: "20px", paddingBottom: "20px", marginBottom: "20px", borderRadius: "30px"}}>
-            {localStorage.getItem("userRole") === "0" ?
-                <Container className='d-flex justify-content-center text-center'>
-                    <Button >Изменить книгу</Button>
-                </Container>
-                :
-                <div/>
-            }
             <h3 className='d-flex justify-content-center text-center'>{book.title}</h3>
 
             <div className='d-flex justify-content-center'><Image height={350} src={baseAppURl + book.imageUrl} style={{margin: 20}}/>
@@ -52,7 +45,11 @@ const BookPage = observer ( () => {
             </div>
             <div className='d-flex justify-content-center'>{user.isAuth ?
                 <div className='d-flex'>
-                    <Button style={{marginRight: 10}}>Ссылка на скачивание электронной версии</Button>
+
+                    {
+                        book.hasOwnProperty('bookUrl') ? <Button style={{marginRight: 10}} onClick={() => getBookElVariant(baseAppURl + book.bookUrl, book.title)}>Ссылка на скачивание электронной версии</Button> :
+                            <div style={{paddingRight: 5, marginTop: 10}} className='text-info'>К сожалению, данная книга не обладает электронной версией</div>
+                    }
                     <Button style={{marginRight: 10}} onClick={() => takeBook(id)}>Взять физическую версию</Button>
                     <p className="mt-2" > Доступное количество: {book.count}</p>
                 </div>

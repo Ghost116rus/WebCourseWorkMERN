@@ -38,6 +38,24 @@ export const fetchOneBooks = async (id) => {
     return data;
 }
 
+export const getBookElVariant = async (url, title) => {
+    console.log(url);
+    const response = await fetch(url);
+    if (response.status === 200) {
+        console.log(title);
+        const blob = await response.blob();
+        const downloadUrl = window.URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = downloadUrl;
+        link.download = title;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+
+
+    }
+}
+
 export const createMedia = async (file) => {
 
     let bodyFormData = new FormData();
